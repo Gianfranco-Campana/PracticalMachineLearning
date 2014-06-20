@@ -1,314 +1,298 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Practicalmachinelearning : Practical Machine Learning - Repository for Project" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Practicalmachinelearning by Gianfranco-Campana</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Practicalmachinelearning</title>
   </head>
-
   <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/Gianfranco-Campana/PracticalMachineLearning">View on GitHub</a>
+      <header>
+        <h1>Practicalmachinelearning</h1>
+        <p>Practical Machine Learning - Repository for Project</p>
+      </header>
 
-          <h1 id="project_title">Practicalmachinelearning</h1>
-          <h2 id="project_tagline">Practical Machine Learning - Repository for Project</h2>
+      <div id="banner">
+        <span id="logo"></span>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/Gianfranco-Campana/PracticalMachineLearning/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/Gianfranco-Campana/PracticalMachineLearning/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+        <a href="https://github.com/Gianfranco-Campana/PracticalMachineLearning" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/Gianfranco-Campana/PracticalMachineLearning/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/Gianfranco-Campana/PracticalMachineLearning/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p>Practical Machine Learning - Project
-The data for this project come from this source: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a>. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment.</p>
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a name="practical-machine-learning---project" class="anchor" href="#practical-machine-learning---project"><span class="octicon octicon-link"></span></a>Practical Machine Learning - Project</h1>
+
+<p>The data for this project come from this source: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a>. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment. </p>
 
 <p>What you should submit</p>
 
-<p>The goal of your project is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. You may use any of the other variables to predict with. You should create a report describing how you built your model, how you used cross validation, what you think the expected out of sample error is, and why you made the choices you did. You will also use your prediction model to predict 20 different test cases.</p>
+<p>The goal of your project is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. You may use any of the other variables to predict with. You should create a report describing how you built your model, how you used cross validation, what you think the expected out of sample error is, and why you made the choices you did. You will also use your prediction model to predict 20 different test cases. </p>
 
-<p>Your submission should consist of a link to a Github repo with your R markdown and compiled HTML file describing your analysis. Please constrain the text of the writeup to &lt; 2000 words and the number of figures to be less than 5. It will make it easier for the graders if you submit a repo with a gh-pages branch so the HTML page can be viewed online (and you always want to make it easy on graders :-).
-You should also apply your machine learning algorithm to the 20 test cases available in the test data above. Please submit your predictions in appropriate format to the programming assignment for automated grading. See the programming assignment for additional details.
-Download file</p>
+<ol>
+<li>Your submission should consist of a link to a Github repo with your R markdown and compiled HTML file describing your analysis. Please constrain the text of the writeup to &lt; 2000 words and the number of figures to be less than 5. It will make it easier for the graders if you submit a repo with a gh-pages branch so the HTML page can be viewed online (and you always want to make it easy on graders :-).</li>
+<li>You should also apply your machine learning algorithm to the 20 test cases available in the test data above. Please submit your predictions in appropriate format to the programming assignment for automated grading. See the programming assignment for additional details. </li>
+</ol><h3>
+<a name="download-file" class="anchor" href="#download-file"><span class="octicon octicon-link"></span></a>Download file</h3>
 
-<p>if(!file.exists("./data")){dir.create("./data")}
-fileUrl &lt;- "<a href="http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv">http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv</a>"
-download.file(fileUrl, destfile="./data/pml-training.csv")
-fileUrl &lt;- "<a href="http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv">http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a>"
-download.file(fileUrl, destfile="./data/pml-testing.csv")
-Load data into R.</p>
+<div class="highlight highlight-r"><pre><span class="kr">if</span><span class="p">(</span><span class="o">!</span><span class="kp">file.exists</span><span class="p">(</span><span class="s">"./data"</span><span class="p">)){</span><span class="kp">dir.create</span><span class="p">(</span><span class="s">"./data"</span><span class="p">)}</span>
+fileUrl <span class="o">&lt;-</span> <span class="s">"http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"</span>
+download.file<span class="p">(</span>fileUrl<span class="p">,</span> destfile<span class="o">=</span><span class="s">"./data/pml-training.csv"</span><span class="p">)</span>
+fileUrl <span class="o">&lt;-</span> <span class="s">"http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"</span>
+download.file<span class="p">(</span>fileUrl<span class="p">,</span> destfile<span class="o">=</span><span class="s">"./data/pml-testing.csv"</span><span class="p">)</span>
+</pre></div>
+
+<h3>
+<a name="load-data-into-r" class="anchor" href="#load-data-into-r"><span class="octicon octicon-link"></span></a>Load data into R.</h3>
 
 <p>The directory data in the working spoace is created, if it not exists:</p>
 
-<p>set.seed(975)
-pmltraining &lt;- read.table("./data/pml-training.csv", sep = ",", header=T, stringsAsFactors=F)
-pmltesting &lt;- read.table("./data/pml-testing.csv", sep = ",", header=T, stringsAsFactors=F)
-Cleanig the dataset:</p>
+<div class="highlight highlight-r"><pre><span class="kp">set.seed</span><span class="p">(</span><span class="m">975</span><span class="p">)</span>
+pmltraining <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">"./data/pml-training.csv"</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">","</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> stringsAsFactors<span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+pmltesting <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">"./data/pml-testing.csv"</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">","</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> stringsAsFactors<span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+</pre></div>
 
-<p>In order to identify the columns really needed, was used used the documentats from the Human Activity Recognition Project</p>
+<h3>
+<a name="cleanig-the-dataset" class="anchor" href="#cleanig-the-dataset"><span class="octicon octicon-link"></span></a>Cleanig the dataset:</h3>
 
-<p>All credits to:</p>
+<p>In order to identify the columns really needed, was used used the documentats from the <a href="http://groupware.les.inf.puc-rio.br/har">Human Activity Recognition Project</a></p>
 
-<p>Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013. Document</p>
+<h4>
+<a name="all-credits-to" class="anchor" href="#all-credits-to"><span class="octicon octicon-link"></span></a>All credits to:</h4>
 
-<p>The strategy chosen is to remove any variable which isn't a value captured by sensors, and so the first 7 columns are deleted:</p>
+<h4>
+<a name="velloso-e-bulling-a-gellersen-h-ugulino-w-fuks-h-qualitative-activity-recognition-of-weight-lifting-exercises-proceedings-of-4th-international-conference-in-cooperation-with-sigchi-augmented-human-13--stuttgart-germany-acm-sigchi-2013-document" class="anchor" href="#velloso-e-bulling-a-gellersen-h-ugulino-w-fuks-h-qualitative-activity-recognition-of-weight-lifting-exercises-proceedings-of-4th-international-conference-in-cooperation-with-sigchi-augmented-human-13--stuttgart-germany-acm-sigchi-2013-document"><span class="octicon octicon-link"></span></a>Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013. <a href="http://groupware.les.inf.puc-rio.br/public/papers/2013.Velloso.QAR-WLE.pdf">Document</a>
+</h4>
 
-<p>Index
-user_name
-raw_timestamp_part_1
-raw_timestamp_part_2
-cvtd_timestamp
-new_window
-num_window
-pmltraining &lt;- pmltraining[,8:ncol(pmltraining)] 
-pmltesting &lt;- pmltesting[,8:ncol(pmltesting)] 
-The second step to cleaning the dataset id to remove the column with NA values:</p>
+<p>The strategy chosen is to remove any variable which isn't a value captured  by sensors, and so the first 7 columns are deleted:</p>
 
-<p>pmltraining &lt;- pmltraining[,colSums(is.na(pmltraining)) == 0]
-pmltesting &lt;- pmltesting[,colSums(is.na(pmltesting)) == 0]
-The third step is to remove the columns with character type values, not needed for the model fitting.</p>
+<ol>
+<li>Index </li>
+<li>user_name<br>
+</li>
+<li>raw_timestamp_part_1 </li>
+<li>raw_timestamp_part_2 </li>
+<li>cvtd_timestamp<br>
+</li>
+<li>new_window<br>
+</li>
+<li>num_window</li>
+</ol><div class="highlight highlight-r"><pre>pmltraining <span class="o">&lt;-</span> pmltraining<span class="p">[,</span><span class="m">8</span><span class="o">:</span><span class="kp">ncol</span><span class="p">(</span>pmltraining<span class="p">)]</span> 
+pmltesting <span class="o">&lt;-</span> pmltesting<span class="p">[,</span><span class="m">8</span><span class="o">:</span><span class="kp">ncol</span><span class="p">(</span>pmltesting<span class="p">)]</span> 
+</pre></div>
 
-<p>Checking char columns and removing except "classe" from dataset pmltraining. The final dataset is made by 52 numeric columns and the classe character column.</p>
+<h3>
+<a name="the-second-step-to-cleaning-the-dataset-id-to-remove-the-column-with-na-values" class="anchor" href="#the-second-step-to-cleaning-the-dataset-id-to-remove-the-column-with-na-values"><span class="octicon octicon-link"></span></a>The second step to cleaning the dataset id to remove the column with NA values:</h3>
 
-<p>ch &lt;- sapply(names(pmltraining), function(x) inherits(pmltraining[,x], c("character")))
-ch &lt;- names(which(ch==TRUE))
-ch &lt;- ch[!ch == "classe"] 
-pmltraining &lt;- pmltraining[,-which(names(pmltraining) %in% ch)]
-Making classe as factor in order to use it as a outcome variable in the model:</p>
+<div class="highlight highlight-r"><pre>pmltraining <span class="o">&lt;-</span> pmltraining<span class="p">[,</span><span class="kp">colSums</span><span class="p">(</span><span class="kp">is.na</span><span class="p">(</span>pmltraining<span class="p">))</span> <span class="o">==</span> <span class="m">0</span><span class="p">]</span>
+pmltesting <span class="o">&lt;-</span> pmltesting<span class="p">[,</span><span class="kp">colSums</span><span class="p">(</span><span class="kp">is.na</span><span class="p">(</span>pmltesting<span class="p">))</span> <span class="o">==</span> <span class="m">0</span><span class="p">]</span>
+</pre></div>
 
-<p>pmltraining$classe &lt;- as.factor(pmltraining$classe)
-Exploratory Data Analysis</p>
+<h3>
+<a name="the-third-step-is-to-remove-the-columns-with-character-type-values-not-needed-for-the-model-fitting" class="anchor" href="#the-third-step-is-to-remove-the-columns-with-character-type-values-not-needed-for-the-model-fitting"><span class="octicon octicon-link"></span></a>The third step is to remove the columns with character type values, not needed for the model fitting.</h3>
+
+<h4>
+<a name="checking-char-columns-and-removing-except-classe-from-dataset-pmltraining-the-final-dataset-is-made-by-52-numeric-columns-and-the-classe-character-column" class="anchor" href="#checking-char-columns-and-removing-except-classe-from-dataset-pmltraining-the-final-dataset-is-made-by-52-numeric-columns-and-the-classe-character-column"><span class="octicon octicon-link"></span></a>Checking char columns and removing except "classe" from dataset pmltraining. The final dataset is made by 52 numeric columns and the classe character column.</h4>
+
+<div class="highlight highlight-r"><pre>ch <span class="o">&lt;-</span> <span class="kp">sapply</span><span class="p">(</span><span class="kp">names</span><span class="p">(</span>pmltraining<span class="p">),</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">inherits</span><span class="p">(</span>pmltraining<span class="p">[,</span>x<span class="p">],</span> <span class="kt">c</span><span class="p">(</span><span class="s">"character"</span><span class="p">)))</span>
+ch <span class="o">&lt;-</span> <span class="kp">names</span><span class="p">(</span><span class="kp">which</span><span class="p">(</span>ch<span class="o">==</span><span class="kc">TRUE</span><span class="p">))</span>
+ch <span class="o">&lt;-</span> ch<span class="p">[</span><span class="o">!</span>ch <span class="o">==</span> <span class="s">"classe"</span><span class="p">]</span> 
+pmltraining <span class="o">&lt;-</span> pmltraining<span class="p">[,</span><span class="o">-</span><span class="kp">which</span><span class="p">(</span><span class="kp">names</span><span class="p">(</span>pmltraining<span class="p">)</span> <span class="o">%in%</span> ch<span class="p">)]</span>
+</pre></div>
+
+<p>Making classe as factor in order to use it as a outcome variable in the model:</p>
+
+<div class="highlight highlight-r"><pre>pmltraining<span class="o">$</span>classe <span class="o">&lt;-</span> <span class="kp">as.factor</span><span class="p">(</span>pmltraining<span class="o">$</span>classe<span class="p">)</span>
+</pre></div>
+
+<h4>
+<a name="exploratory-data-analysis" class="anchor" href="#exploratory-data-analysis"><span class="octicon octicon-link"></span></a>Exploratory Data Analysis</h4>
 
 <p>These are the final variables and the distribution of classe response for three variable explaining total data:</p>
 
-<p>total_accel_belt
-total_accel_arm
-total_accel_dumbbell
-total_accel_forearm
-par(mfrow=c(2,2))
-plot(pmltraining$classe ~ pmltraining$total_accel_forearm)
-plot(pmltraining$classe ~ pmltraining$total_accel_arm)
-plot(pmltraining$classe ~ pmltraining$total_accel_dumbbell)
-plot(pmltraining$classe ~ pmltraining$total_accel_forearm)
-plot of chunk unnamed-chunk-7</p>
+<ol>
+<li>total_accel_belt</li>
+<li>total_accel_arm</li>
+<li>total_accel_dumbbell</li>
+<li>total_accel_forearm</li>
+</ol><div class="highlight highlight-r"><pre>par<span class="p">(</span>mfrow<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+plot<span class="p">(</span>pmltraining<span class="o">$</span>classe <span class="o">~</span> pmltraining<span class="o">$</span>total_accel_forearm<span class="p">)</span>
+plot<span class="p">(</span>pmltraining<span class="o">$</span>classe <span class="o">~</span> pmltraining<span class="o">$</span>total_accel_arm<span class="p">)</span>
+plot<span class="p">(</span>pmltraining<span class="o">$</span>classe <span class="o">~</span> pmltraining<span class="o">$</span>total_accel_dumbbell<span class="p">)</span>
+plot<span class="p">(</span>pmltraining<span class="o">$</span>classe <span class="o">~</span> pmltraining<span class="o">$</span>total_accel_forearm<span class="p">)</span>
+</pre></div>
 
-<p>Building training model.</p>
+<p><img src="figure/unnamed-chunk-7.png" alt="plot of chunk unnamed-chunk-7"></p>
 
-<p>We choose to train the model using Random Forest Algorithm to target a high level of accuracy. The train control method chosen is oob (Out of Bag). this method perform a high prediction power, and really good performance in computing the model.</p>
+<h3>
+<a name="building-training-model" class="anchor" href="#building-training-model"><span class="octicon octicon-link"></span></a>Building training model.</h3>
 
-<p>According to the oob document , this method performs an unbiased estimate internally, so there is no need for cross-validation or a separate test set to get an unbiased estimate.</p>
+<h4>
+<a name="we-choose-to-train-the-model-using-random-forest-algorithm-to-target-a-high-level-of--accuracy-the-train-control-method-chosen-is-oob-out-of-bag-this-method-perform-a-high-prediction-power-and-really-good-performance-in-computing-the-model" class="anchor" href="#we-choose-to-train-the-model-using-random-forest-algorithm-to-target-a-high-level-of--accuracy-the-train-control-method-chosen-is-oob-out-of-bag-this-method-perform-a-high-prediction-power-and-really-good-performance-in-computing-the-model"><span class="octicon octicon-link"></span></a>We choose to train the model using Random Forest Algorithm to target a high level of  accuracy. The train control method chosen is oob (Out of Bag). this method perform a high prediction power, and really good performance in computing the model.</h4>
+
+<p>According to the <a href="http://www.stat.berkeley.edu/%7Ebreiman/RandomForests/cc_home.htm#ooberr">oob document</a> , this method performs an unbiased estimate internally, so there is no need for cross-validation or a separate test set to get an unbiased estimate.</p>
 
 <p>Anyway, we choose to create the training and test set, in order to renforce the reliable of the result, and demonstrate the application of consepts.</p>
 
-<p>Making a train set and a test set from the pmltraining data set to validate expected out of sample error, and accuracy.</p>
+<h4>
+<a name="making-a-train-set-and-a--test-set-from-the-pmltraining-data-set--to-validate-expected-out-of-sample-error-and-accuracy" class="anchor" href="#making-a-train-set-and-a--test-set-from-the-pmltraining-data-set--to-validate-expected-out-of-sample-error-and-accuracy"><span class="octicon octicon-link"></span></a>Making a train set and a  test set from the pmltraining data set  to validate expected out of sample error, and accuracy.</h4>
 
-<p>library(caret)</p>
+<div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>caret<span class="p">)</span>
+</pre></div>
 
-<h2>
-<a name="loading-required-package-lattice" class="anchor" href="#loading-required-package-lattice"><span class="octicon octicon-link"></span></a>Loading required package: lattice</h2>
+<pre><code>## Loading required package: lattice
+## Loading required package: ggplot2
+</code></pre>
 
-<h2>
-<a name="loading-required-package-ggplot2" class="anchor" href="#loading-required-package-ggplot2"><span class="octicon octicon-link"></span></a>Loading required package: ggplot2</h2>
+<div class="highlight highlight-r"><pre>dp <span class="o">&lt;-</span> createDataPartition<span class="p">(</span>y <span class="o">=</span> pmltraining<span class="o">$</span>classe<span class="p">,</span> p<span class="o">=</span><span class="m">0.2</span><span class="p">,</span><span class="kt">list</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span> 
+dpdatatest <span class="o">&lt;-</span> pmltraining<span class="p">[</span>dp<span class="p">,]</span>
+dpdatatrain <span class="o">&lt;-</span> pmltraining<span class="p">[</span><span class="o">-</span>dp<span class="p">,]</span>
+<span class="kp">nrow</span><span class="p">(</span>dpdatatest<span class="p">);</span> <span class="kp">nrow</span><span class="p">(</span>dpdatatrain<span class="p">)</span>
+</pre></div>
 
-<p>dp &lt;- createDataPartition(y = pmltraining$classe, p=0.2,list=FALSE) 
-dpdatatest &lt;- pmltraining[dp,]
-dpdatatrain &lt;- pmltraining[-dp,]
-nrow(dpdatatest); nrow(dpdatatrain)</p>
+<pre><code>## [1] 3927
+</code></pre>
 
-<h2>
-<a name="1-3927" class="anchor" href="#1-3927"><span class="octicon octicon-link"></span></a>[1] 3927</h2>
+<pre><code>## [1] 15695
+</code></pre>
 
-<h2>
-<a name="1-15695" class="anchor" href="#1-15695"><span class="octicon octicon-link"></span></a>[1] 15695</h2>
+<h4>
+<a name="training-the-predictor-model" class="anchor" href="#training-the-predictor-model"><span class="octicon octicon-link"></span></a>Training the predictor model:</h4>
 
-<p>Training the predictor model:</p>
+<div class="highlight highlight-r"><pre>modFitrf_train <span class="o">&lt;-</span> train<span class="p">(</span>classe <span class="o">~</span> <span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dpdatatrain<span class="p">,</span> method<span class="o">=</span><span class="s">"rf"</span><span class="p">,</span> trControl <span class="o">=</span> trainControl<span class="p">(</span>method <span class="o">=</span> <span class="s">"oob"</span><span class="p">,</span> number <span class="o">=</span> <span class="m">4</span><span class="p">))</span> 
+</pre></div>
 
-<p>modFitrf_train &lt;- train(classe ~ ., data = dpdatatrain, method="rf", trControl = trainControl(method = "oob", number = 4)) </p>
+<pre><code>## Loading required package: randomForest
+## randomForest 4.6-7
+## Type rfNews() to see new features/changes/bug fixes.
+</code></pre>
 
-<h2>
-<a name="loading-required-package-randomforest" class="anchor" href="#loading-required-package-randomforest"><span class="octicon octicon-link"></span></a>Loading required package: randomForest</h2>
+<h4>
+<a name="plotting-the-final-model" class="anchor" href="#plotting-the-final-model"><span class="octicon octicon-link"></span></a>Plotting the final model:</h4>
 
-<h2>
-<a name="randomforest-46-7" class="anchor" href="#randomforest-46-7"><span class="octicon octicon-link"></span></a>randomForest 4.6-7</h2>
+<div class="highlight highlight-r"><pre>plot<span class="p">(</span>modFitrf_train<span class="o">$</span>finalModel<span class="p">)</span>
+</pre></div>
 
-<h2>
-<a name="type-rfnews-to-see-new-featureschangesbug-fixes" class="anchor" href="#type-rfnews-to-see-new-featureschangesbug-fixes"><span class="octicon octicon-link"></span></a>Type rfNews() to see new features/changes/bug fixes.</h2>
+<p><img src="figure/unnamed-chunk-10.png" alt="plot of chunk unnamed-chunk-10"></p>
 
-<p>Plotting the final model:</p>
+<h4>
+<a name="checking-and-validating-the-model-using-confusionmatrix-and-postresample-method" class="anchor" href="#checking-and-validating-the-model-using-confusionmatrix-and-postresample-method"><span class="octicon octicon-link"></span></a>Checking and validating the model using confusionMatrix and postResample method.</h4>
 
-<p>plot(modFitrf_train$finalModel)
-plot of chunk unnamed-chunk-10</p>
+<div class="highlight highlight-r"><pre>cm <span class="o">&lt;-</span> confusionMatrix<span class="p">(</span>dpdatatest<span class="o">$</span>classe<span class="p">,</span> predict<span class="p">(</span>modFitrf_train<span class="p">,</span> dpdatatest<span class="p">))</span>
+cm
+</pre></div>
 
-<p>Checking and validating the model using confusionMatrix and postResample method.</p>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction    A    B    C    D    E
+##          A 1115    1    0    0    0
+##          B    4  756    0    0    0
+##          C    0    3  676    6    0
+##          D    0    0    0  644    0
+##          E    0    0    0    0  722
+## 
+## Overall Statistics
+##                                         
+##                Accuracy : 0.996         
+##                  95% CI : (0.994, 0.998)
+##     No Information Rate : 0.285         
+##     P-Value [Acc &gt; NIR] : &lt;2e-16        
+##                                         
+##                   Kappa : 0.995         
+##  Mcnemar's Test P-Value : NA            
+## 
+## Statistics by Class:
+## 
+##                      Class: A Class: B Class: C Class: D Class: E
+## Sensitivity             0.996    0.995    1.000    0.991    1.000
+## Specificity             1.000    0.999    0.997    1.000    1.000
+## Pos Pred Value          0.999    0.995    0.987    1.000    1.000
+## Neg Pred Value          0.999    0.999    1.000    0.998    1.000
+## Prevalence              0.285    0.194    0.172    0.166    0.184
+## Detection Rate          0.284    0.193    0.172    0.164    0.184
+## Detection Prevalence    0.284    0.194    0.174    0.164    0.184
+## Balanced Accuracy       0.998    0.997    0.999    0.995    1.000
+</code></pre>
 
-<p>cm &lt;- confusionMatrix(dpdatatest$classe, predict(modFitrf_train, dpdatatest))
-cm</p>
+<div class="highlight highlight-r"><pre>pr <span class="o">&lt;-</span> postResample<span class="p">(</span>predict<span class="p">(</span>modFitrf_train<span class="p">,</span> dpdatatest<span class="p">),</span> dpdatatest<span class="o">$</span>classe<span class="p">)</span>
+pr
+</pre></div>
 
-<h2>
-<a name="confusion-matrix-and-statistics" class="anchor" href="#confusion-matrix-and-statistics"><span class="octicon octicon-link"></span></a>Confusion Matrix and Statistics</h2>
+<pre><code>## Accuracy    Kappa 
+##   0.9964   0.9955
+</code></pre>
 
-<h2>
-<a name="reference" class="anchor" href="#reference"><span class="octicon octicon-link"></span></a>Reference</h2>
+<h3>
+<a name="we-observe-an-accuracy-of-0996-and-an-estimate-of-oob-error-rate-of-06-as-follow" class="anchor" href="#we-observe-an-accuracy-of-0996-and-an-estimate-of-oob-error-rate-of-06-as-follow"><span class="octicon octicon-link"></span></a>We observe an accuracy of 0.996, and an estimate of OOB error rate of 0.6% as follow:</h3>
 
-<h2>
-<a name="prediction----a----b----c----d----e" class="anchor" href="#prediction----a----b----c----d----e"><span class="octicon octicon-link"></span></a>Prediction    A    B    C    D    E</h2>
+<div class="highlight highlight-r"><pre>modFitrf_train<span class="o">$</span>finalModel
+</pre></div>
 
-<h2>
-<a name="a-1115----1----0----0----0" class="anchor" href="#a-1115----1----0----0----0"><span class="octicon octicon-link"></span></a>A 1115    1    0    0    0</h2>
+<pre><code>## 
+## Call:
+##  randomForest(x = x, y = y, mtry = param$mtry) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 27
+## 
+##         OOB estimate of  error rate: 0.6%
+## Confusion matrix:
+##      A    B    C    D    E class.error
+## A 4459    3    1    0    1    0.001120
+## B   19 3010    8    0    0    0.008890
+## C    0   16 2717    4    0    0.007307
+## D    0    1   27 2541    3    0.012053
+## E    0    1    3    7 2874    0.003813
+</code></pre>
 
-<h2>
-<a name="b----4--756----0----0----0" class="anchor" href="#b----4--756----0----0----0"><span class="octicon octicon-link"></span></a>B    4  756    0    0    0</h2>
+<h3>
+<a name="predicting-values-for-pml-testing" class="anchor" href="#predicting-values-for-pml-testing"><span class="octicon octicon-link"></span></a>Predicting values for pml-testing</h3>
 
-<h2>
-<a name="c----0----3--676----6----0" class="anchor" href="#c----0----3--676----6----0"><span class="octicon octicon-link"></span></a>C    0    3  676    6    0</h2>
+<h4>
+<a name="make-prediction" class="anchor" href="#make-prediction"><span class="octicon octicon-link"></span></a>Make prediction</h4>
 
-<h2>
-<a name="d----0----0----0--644----0" class="anchor" href="#d----0----0----0--644----0"><span class="octicon octicon-link"></span></a>D    0    0    0  644    0</h2>
+<div class="highlight highlight-r"><pre>pred <span class="o">&lt;-</span> predict<span class="p">(</span>modFitrf_train<span class="p">,</span> pmltesting<span class="p">)</span>
+</pre></div>
 
-<h2>
-<a name="e----0----0----0----0--722" class="anchor" href="#e----0----0----0----0--722"><span class="octicon octicon-link"></span></a>E    0    0    0    0  722</h2>
+<h4>
+<a name="submitting-function--2020-correct" class="anchor" href="#submitting-function--2020-correct"><span class="octicon octicon-link"></span></a>Submitting function ( 20/20 correct).</h4>
 
-<h2>
-<a name="overall-statistics" class="anchor" href="#overall-statistics"><span class="octicon octicon-link"></span></a>Overall Statistics</h2>
-
-<h2>
-<a name="accuracy--0996" class="anchor" href="#accuracy--0996"><span class="octicon octicon-link"></span></a>Accuracy : 0.996</h2>
-
-<h2>
-<a name="95-ci--0994-0998" class="anchor" href="#95-ci--0994-0998"><span class="octicon octicon-link"></span></a>95% CI : (0.994, 0.998)</h2>
-
-<h2>
-<a name="no-information-rate--0285" class="anchor" href="#no-information-rate--0285"><span class="octicon octicon-link"></span></a>No Information Rate : 0.285</h2>
-
-<h2>
-<a name="p-value-acc--nir--2e-16" class="anchor" href="#p-value-acc--nir--2e-16"><span class="octicon octicon-link"></span></a>P-Value [Acc &gt; NIR] : &lt;2e-16</h2>
-
-<h2>
-<a name="kappa--0995" class="anchor" href="#kappa--0995"><span class="octicon octicon-link"></span></a>Kappa : 0.995</h2>
-
-<h2>
-<a name="mcnemars-test-p-value--na" class="anchor" href="#mcnemars-test-p-value--na"><span class="octicon octicon-link"></span></a>Mcnemar's Test P-Value : NA</h2>
-
-<h2>
-<a name="statistics-by-class" class="anchor" href="#statistics-by-class"><span class="octicon octicon-link"></span></a>Statistics by Class:</h2>
-
-<h2>
-<a name="class-a-class-b-class-c-class-d-class-e" class="anchor" href="#class-a-class-b-class-c-class-d-class-e"><span class="octicon octicon-link"></span></a>Class: A Class: B Class: C Class: D Class: E</h2>
-
-<h2>
-<a name="sensitivity-------------0996----0995----1000----0991----1000" class="anchor" href="#sensitivity-------------0996----0995----1000----0991----1000"><span class="octicon octicon-link"></span></a>Sensitivity             0.996    0.995    1.000    0.991    1.000</h2>
-
-<h2>
-<a name="specificity-------------1000----0999----0997----1000----1000" class="anchor" href="#specificity-------------1000----0999----0997----1000----1000"><span class="octicon octicon-link"></span></a>Specificity             1.000    0.999    0.997    1.000    1.000</h2>
-
-<h2>
-<a name="pos-pred-value----------0999----0995----0987----1000----1000" class="anchor" href="#pos-pred-value----------0999----0995----0987----1000----1000"><span class="octicon octicon-link"></span></a>Pos Pred Value          0.999    0.995    0.987    1.000    1.000</h2>
-
-<h2>
-<a name="neg-pred-value----------0999----0999----1000----0998----1000" class="anchor" href="#neg-pred-value----------0999----0999----1000----0998----1000"><span class="octicon octicon-link"></span></a>Neg Pred Value          0.999    0.999    1.000    0.998    1.000</h2>
-
-<h2>
-<a name="prevalence--------------0285----0194----0172----0166----0184" class="anchor" href="#prevalence--------------0285----0194----0172----0166----0184"><span class="octicon octicon-link"></span></a>Prevalence              0.285    0.194    0.172    0.166    0.184</h2>
-
-<h2>
-<a name="detection-rate----------0284----0193----0172----0164----0184" class="anchor" href="#detection-rate----------0284----0193----0172----0164----0184"><span class="octicon octicon-link"></span></a>Detection Rate          0.284    0.193    0.172    0.164    0.184</h2>
-
-<h2>
-<a name="detection-prevalence----0284----0194----0174----0164----0184" class="anchor" href="#detection-prevalence----0284----0194----0174----0164----0184"><span class="octicon octicon-link"></span></a>Detection Prevalence    0.284    0.194    0.174    0.164    0.184</h2>
-
-<h2>
-<a name="balanced-accuracy-------0998----0997----0999----0995----1000" class="anchor" href="#balanced-accuracy-------0998----0997----0999----0995----1000"><span class="octicon octicon-link"></span></a>Balanced Accuracy       0.998    0.997    0.999    0.995    1.000</h2>
-
-<p>pr &lt;- postResample(predict(modFitrf_train, dpdatatest), dpdatatest$classe)
-pr</p>
-
-<h2>
-<a name="accuracy----kappa" class="anchor" href="#accuracy----kappa"><span class="octicon octicon-link"></span></a>Accuracy    Kappa</h2>
-
-<h2>
-<a name="09964---09955" class="anchor" href="#09964---09955"><span class="octicon octicon-link"></span></a>0.9964   0.9955</h2>
-
-<p>We observe an accuracy of 0.996, and an estimate of OOB error rate of 0.6% as follow:</p>
-
-<p>modFitrf_train$finalModel</p>
-
-<h2>
-<a name="call" class="anchor" href="#call"><span class="octicon octicon-link"></span></a>Call:</h2>
-
-<h2>
-<a name="randomforestx--x-y--y-mtry--parammtry" class="anchor" href="#randomforestx--x-y--y-mtry--parammtry"><span class="octicon octicon-link"></span></a>randomForest(x = x, y = y, mtry = param$mtry)</h2>
-
-<h2>
-<a name="type-of-random-forest-classification" class="anchor" href="#type-of-random-forest-classification"><span class="octicon octicon-link"></span></a>Type of random forest: classification</h2>
-
-<h2>
-<a name="number-of-trees-500" class="anchor" href="#number-of-trees-500"><span class="octicon octicon-link"></span></a>Number of trees: 500</h2>
-
-<h2>
-<a name="no-of-variables-tried-at-each-split-27" class="anchor" href="#no-of-variables-tried-at-each-split-27"><span class="octicon octicon-link"></span></a>No. of variables tried at each split: 27</h2>
-
-<h2>
-<a name="oob-estimate-of--error-rate-06" class="anchor" href="#oob-estimate-of--error-rate-06"><span class="octicon octicon-link"></span></a>OOB estimate of  error rate: 0.6%</h2>
-
-<h2>
-<a name="confusion-matrix" class="anchor" href="#confusion-matrix"><span class="octicon octicon-link"></span></a>Confusion matrix:</h2>
-
-<h2>
-<a name="a----b----c----d----e-classerror" class="anchor" href="#a----b----c----d----e-classerror"><span class="octicon octicon-link"></span></a>A    B    C    D    E class.error</h2>
-
-<h2>
-<a name="a-4459----3----1----0----1----0001120" class="anchor" href="#a-4459----3----1----0----1----0001120"><span class="octicon octicon-link"></span></a>A 4459    3    1    0    1    0.001120</h2>
-
-<h2>
-<a name="b---19-3010----8----0----0----0008890" class="anchor" href="#b---19-3010----8----0----0----0008890"><span class="octicon octicon-link"></span></a>B   19 3010    8    0    0    0.008890</h2>
-
-<h2>
-<a name="c----0---16-2717----4----0----0007307" class="anchor" href="#c----0---16-2717----4----0----0007307"><span class="octicon octicon-link"></span></a>C    0   16 2717    4    0    0.007307</h2>
-
-<h2>
-<a name="d----0----1---27-2541----3----0012053" class="anchor" href="#d----0----1---27-2541----3----0012053"><span class="octicon octicon-link"></span></a>D    0    1   27 2541    3    0.012053</h2>
-
-<h2>
-<a name="e----0----1----3----7-2874----0003813" class="anchor" href="#e----0----1----3----7-2874----0003813"><span class="octicon octicon-link"></span></a>E    0    1    3    7 2874    0.003813</h2>
-
-<p>Predicting values for pml-testing</p>
-
-<p>Make prediction</p>
-
-<p>pred &lt;- predict(modFitrf_train, pmltesting)
-Submitting function ( 20/20 correct).</p>
-
-<p>pml_write_files = function(x){
-  n = length(x)
-  for(i in 1:n){
-    filename = paste0("problem_id_",i,".txt")
-    write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
-  }
-}
-pml_write_files(pred)</p>
+<div class="highlight highlight-r"><pre>pml_write_files <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">){</span>
+  n <span class="o">=</span> <span class="kp">length</span><span class="p">(</span>x<span class="p">)</span>
+  <span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n<span class="p">){</span>
+    filename <span class="o">=</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">"problem_id_"</span><span class="p">,</span>i<span class="p">,</span><span class="s">".txt"</span><span class="p">)</span>
+    write.table<span class="p">(</span>x<span class="p">[</span>i<span class="p">],</span>file<span class="o">=</span>filename<span class="p">,</span>quote<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>row.names<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>col.names<span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+pml_write_files<span class="p">(</span>pred<span class="p">)</span>
+</pre></div>
       </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Practicalmachinelearning maintained by <a href="https://github.com/Gianfranco-Campana">Gianfranco-Campana</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/Gianfranco-Campana">Gianfranco-Campana</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
       </footer>
     </div>
-
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
-
   </body>
 </html>
