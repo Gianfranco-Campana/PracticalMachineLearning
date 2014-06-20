@@ -31,37 +31,272 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <p>Practical Machine Learning - Project
+The data for this project come from this source: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a>. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment.</p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>What you should submit</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>The goal of your project is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. You may use any of the other variables to predict with. You should create a report describing how you built your model, how you used cross validation, what you think the expected out of sample error is, and why you made the choices you did. You will also use your prediction model to predict 20 different test cases.</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Your submission should consist of a link to a Github repo with your R markdown and compiled HTML file describing your analysis. Please constrain the text of the writeup to &lt; 2000 words and the number of figures to be less than 5. It will make it easier for the graders if you submit a repo with a gh-pages branch so the HTML page can be viewed online (and you always want to make it easy on graders :-).
+You should also apply your machine learning algorithm to the 20 test cases available in the test data above. Please submit your predictions in appropriate format to the programming assignment for automated grading. See the programming assignment for additional details.
+Download file</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>if(!file.exists("./data")){dir.create("./data")}
+fileUrl &lt;- "<a href="http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv">http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv</a>"
+download.file(fileUrl, destfile="./data/pml-training.csv")
+fileUrl &lt;- "<a href="http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv">http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a>"
+download.file(fileUrl, destfile="./data/pml-testing.csv")
+Load data into R.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>The directory data in the working spoace is created, if it not exists:</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p>set.seed(975)
+pmltraining &lt;- read.table("./data/pml-training.csv", sep = ",", header=T, stringsAsFactors=F)
+pmltesting &lt;- read.table("./data/pml-testing.csv", sep = ",", header=T, stringsAsFactors=F)
+Cleanig the dataset:</p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>In order to identify the columns really needed, was used used the documentats from the Human Activity Recognition Project</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p>All credits to:</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013. Document</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>The strategy chosen is to remove any variable which isn't a value captured by sensors, and so the first 7 columns are deleted:</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>Index
+user_name
+raw_timestamp_part_1
+raw_timestamp_part_2
+cvtd_timestamp
+new_window
+num_window
+pmltraining &lt;- pmltraining[,8:ncol(pmltraining)] 
+pmltesting &lt;- pmltesting[,8:ncol(pmltesting)] 
+The second step to cleaning the dataset id to remove the column with NA values:</p>
+
+<p>pmltraining &lt;- pmltraining[,colSums(is.na(pmltraining)) == 0]
+pmltesting &lt;- pmltesting[,colSums(is.na(pmltesting)) == 0]
+The third step is to remove the columns with character type values, not needed for the model fitting.</p>
+
+<p>Checking char columns and removing except "classe" from dataset pmltraining. The final dataset is made by 52 numeric columns and the classe character column.</p>
+
+<p>ch &lt;- sapply(names(pmltraining), function(x) inherits(pmltraining[,x], c("character")))
+ch &lt;- names(which(ch==TRUE))
+ch &lt;- ch[!ch == "classe"] 
+pmltraining &lt;- pmltraining[,-which(names(pmltraining) %in% ch)]
+Making classe as factor in order to use it as a outcome variable in the model:</p>
+
+<p>pmltraining$classe &lt;- as.factor(pmltraining$classe)
+Exploratory Data Analysis</p>
+
+<p>These are the final variables and the distribution of classe response for three variable explaining total data:</p>
+
+<p>total_accel_belt
+total_accel_arm
+total_accel_dumbbell
+total_accel_forearm
+par(mfrow=c(2,2))
+plot(pmltraining$classe ~ pmltraining$total_accel_forearm)
+plot(pmltraining$classe ~ pmltraining$total_accel_arm)
+plot(pmltraining$classe ~ pmltraining$total_accel_dumbbell)
+plot(pmltraining$classe ~ pmltraining$total_accel_forearm)
+plot of chunk unnamed-chunk-7</p>
+
+<p>Building training model.</p>
+
+<p>We choose to train the model using Random Forest Algorithm to target a high level of accuracy. The train control method chosen is oob (Out of Bag). this method perform a high prediction power, and really good performance in computing the model.</p>
+
+<p>According to the oob document , this method performs an unbiased estimate internally, so there is no need for cross-validation or a separate test set to get an unbiased estimate.</p>
+
+<p>Anyway, we choose to create the training and test set, in order to renforce the reliable of the result, and demonstrate the application of consepts.</p>
+
+<p>Making a train set and a test set from the pmltraining data set to validate expected out of sample error, and accuracy.</p>
+
+<p>library(caret)</p>
+
+<h2>
+<a name="loading-required-package-lattice" class="anchor" href="#loading-required-package-lattice"><span class="octicon octicon-link"></span></a>Loading required package: lattice</h2>
+
+<h2>
+<a name="loading-required-package-ggplot2" class="anchor" href="#loading-required-package-ggplot2"><span class="octicon octicon-link"></span></a>Loading required package: ggplot2</h2>
+
+<p>dp &lt;- createDataPartition(y = pmltraining$classe, p=0.2,list=FALSE) 
+dpdatatest &lt;- pmltraining[dp,]
+dpdatatrain &lt;- pmltraining[-dp,]
+nrow(dpdatatest); nrow(dpdatatrain)</p>
+
+<h2>
+<a name="1-3927" class="anchor" href="#1-3927"><span class="octicon octicon-link"></span></a>[1] 3927</h2>
+
+<h2>
+<a name="1-15695" class="anchor" href="#1-15695"><span class="octicon octicon-link"></span></a>[1] 15695</h2>
+
+<p>Training the predictor model:</p>
+
+<p>modFitrf_train &lt;- train(classe ~ ., data = dpdatatrain, method="rf", trControl = trainControl(method = "oob", number = 4)) </p>
+
+<h2>
+<a name="loading-required-package-randomforest" class="anchor" href="#loading-required-package-randomforest"><span class="octicon octicon-link"></span></a>Loading required package: randomForest</h2>
+
+<h2>
+<a name="randomforest-46-7" class="anchor" href="#randomforest-46-7"><span class="octicon octicon-link"></span></a>randomForest 4.6-7</h2>
+
+<h2>
+<a name="type-rfnews-to-see-new-featureschangesbug-fixes" class="anchor" href="#type-rfnews-to-see-new-featureschangesbug-fixes"><span class="octicon octicon-link"></span></a>Type rfNews() to see new features/changes/bug fixes.</h2>
+
+<p>Plotting the final model:</p>
+
+<p>plot(modFitrf_train$finalModel)
+plot of chunk unnamed-chunk-10</p>
+
+<p>Checking and validating the model using confusionMatrix and postResample method.</p>
+
+<p>cm &lt;- confusionMatrix(dpdatatest$classe, predict(modFitrf_train, dpdatatest))
+cm</p>
+
+<h2>
+<a name="confusion-matrix-and-statistics" class="anchor" href="#confusion-matrix-and-statistics"><span class="octicon octicon-link"></span></a>Confusion Matrix and Statistics</h2>
+
+<h2>
+<a name="reference" class="anchor" href="#reference"><span class="octicon octicon-link"></span></a>Reference</h2>
+
+<h2>
+<a name="prediction----a----b----c----d----e" class="anchor" href="#prediction----a----b----c----d----e"><span class="octicon octicon-link"></span></a>Prediction    A    B    C    D    E</h2>
+
+<h2>
+<a name="a-1115----1----0----0----0" class="anchor" href="#a-1115----1----0----0----0"><span class="octicon octicon-link"></span></a>A 1115    1    0    0    0</h2>
+
+<h2>
+<a name="b----4--756----0----0----0" class="anchor" href="#b----4--756----0----0----0"><span class="octicon octicon-link"></span></a>B    4  756    0    0    0</h2>
+
+<h2>
+<a name="c----0----3--676----6----0" class="anchor" href="#c----0----3--676----6----0"><span class="octicon octicon-link"></span></a>C    0    3  676    6    0</h2>
+
+<h2>
+<a name="d----0----0----0--644----0" class="anchor" href="#d----0----0----0--644----0"><span class="octicon octicon-link"></span></a>D    0    0    0  644    0</h2>
+
+<h2>
+<a name="e----0----0----0----0--722" class="anchor" href="#e----0----0----0----0--722"><span class="octicon octicon-link"></span></a>E    0    0    0    0  722</h2>
+
+<h2>
+<a name="overall-statistics" class="anchor" href="#overall-statistics"><span class="octicon octicon-link"></span></a>Overall Statistics</h2>
+
+<h2>
+<a name="accuracy--0996" class="anchor" href="#accuracy--0996"><span class="octicon octicon-link"></span></a>Accuracy : 0.996</h2>
+
+<h2>
+<a name="95-ci--0994-0998" class="anchor" href="#95-ci--0994-0998"><span class="octicon octicon-link"></span></a>95% CI : (0.994, 0.998)</h2>
+
+<h2>
+<a name="no-information-rate--0285" class="anchor" href="#no-information-rate--0285"><span class="octicon octicon-link"></span></a>No Information Rate : 0.285</h2>
+
+<h2>
+<a name="p-value-acc--nir--2e-16" class="anchor" href="#p-value-acc--nir--2e-16"><span class="octicon octicon-link"></span></a>P-Value [Acc &gt; NIR] : &lt;2e-16</h2>
+
+<h2>
+<a name="kappa--0995" class="anchor" href="#kappa--0995"><span class="octicon octicon-link"></span></a>Kappa : 0.995</h2>
+
+<h2>
+<a name="mcnemars-test-p-value--na" class="anchor" href="#mcnemars-test-p-value--na"><span class="octicon octicon-link"></span></a>Mcnemar's Test P-Value : NA</h2>
+
+<h2>
+<a name="statistics-by-class" class="anchor" href="#statistics-by-class"><span class="octicon octicon-link"></span></a>Statistics by Class:</h2>
+
+<h2>
+<a name="class-a-class-b-class-c-class-d-class-e" class="anchor" href="#class-a-class-b-class-c-class-d-class-e"><span class="octicon octicon-link"></span></a>Class: A Class: B Class: C Class: D Class: E</h2>
+
+<h2>
+<a name="sensitivity-------------0996----0995----1000----0991----1000" class="anchor" href="#sensitivity-------------0996----0995----1000----0991----1000"><span class="octicon octicon-link"></span></a>Sensitivity             0.996    0.995    1.000    0.991    1.000</h2>
+
+<h2>
+<a name="specificity-------------1000----0999----0997----1000----1000" class="anchor" href="#specificity-------------1000----0999----0997----1000----1000"><span class="octicon octicon-link"></span></a>Specificity             1.000    0.999    0.997    1.000    1.000</h2>
+
+<h2>
+<a name="pos-pred-value----------0999----0995----0987----1000----1000" class="anchor" href="#pos-pred-value----------0999----0995----0987----1000----1000"><span class="octicon octicon-link"></span></a>Pos Pred Value          0.999    0.995    0.987    1.000    1.000</h2>
+
+<h2>
+<a name="neg-pred-value----------0999----0999----1000----0998----1000" class="anchor" href="#neg-pred-value----------0999----0999----1000----0998----1000"><span class="octicon octicon-link"></span></a>Neg Pred Value          0.999    0.999    1.000    0.998    1.000</h2>
+
+<h2>
+<a name="prevalence--------------0285----0194----0172----0166----0184" class="anchor" href="#prevalence--------------0285----0194----0172----0166----0184"><span class="octicon octicon-link"></span></a>Prevalence              0.285    0.194    0.172    0.166    0.184</h2>
+
+<h2>
+<a name="detection-rate----------0284----0193----0172----0164----0184" class="anchor" href="#detection-rate----------0284----0193----0172----0164----0184"><span class="octicon octicon-link"></span></a>Detection Rate          0.284    0.193    0.172    0.164    0.184</h2>
+
+<h2>
+<a name="detection-prevalence----0284----0194----0174----0164----0184" class="anchor" href="#detection-prevalence----0284----0194----0174----0164----0184"><span class="octicon octicon-link"></span></a>Detection Prevalence    0.284    0.194    0.174    0.164    0.184</h2>
+
+<h2>
+<a name="balanced-accuracy-------0998----0997----0999----0995----1000" class="anchor" href="#balanced-accuracy-------0998----0997----0999----0995----1000"><span class="octicon octicon-link"></span></a>Balanced Accuracy       0.998    0.997    0.999    0.995    1.000</h2>
+
+<p>pr &lt;- postResample(predict(modFitrf_train, dpdatatest), dpdatatest$classe)
+pr</p>
+
+<h2>
+<a name="accuracy----kappa" class="anchor" href="#accuracy----kappa"><span class="octicon octicon-link"></span></a>Accuracy    Kappa</h2>
+
+<h2>
+<a name="09964---09955" class="anchor" href="#09964---09955"><span class="octicon octicon-link"></span></a>0.9964   0.9955</h2>
+
+<p>We observe an accuracy of 0.996, and an estimate of OOB error rate of 0.6% as follow:</p>
+
+<p>modFitrf_train$finalModel</p>
+
+<h2>
+<a name="call" class="anchor" href="#call"><span class="octicon octicon-link"></span></a>Call:</h2>
+
+<h2>
+<a name="randomforestx--x-y--y-mtry--parammtry" class="anchor" href="#randomforestx--x-y--y-mtry--parammtry"><span class="octicon octicon-link"></span></a>randomForest(x = x, y = y, mtry = param$mtry)</h2>
+
+<h2>
+<a name="type-of-random-forest-classification" class="anchor" href="#type-of-random-forest-classification"><span class="octicon octicon-link"></span></a>Type of random forest: classification</h2>
+
+<h2>
+<a name="number-of-trees-500" class="anchor" href="#number-of-trees-500"><span class="octicon octicon-link"></span></a>Number of trees: 500</h2>
+
+<h2>
+<a name="no-of-variables-tried-at-each-split-27" class="anchor" href="#no-of-variables-tried-at-each-split-27"><span class="octicon octicon-link"></span></a>No. of variables tried at each split: 27</h2>
+
+<h2>
+<a name="oob-estimate-of--error-rate-06" class="anchor" href="#oob-estimate-of--error-rate-06"><span class="octicon octicon-link"></span></a>OOB estimate of  error rate: 0.6%</h2>
+
+<h2>
+<a name="confusion-matrix" class="anchor" href="#confusion-matrix"><span class="octicon octicon-link"></span></a>Confusion matrix:</h2>
+
+<h2>
+<a name="a----b----c----d----e-classerror" class="anchor" href="#a----b----c----d----e-classerror"><span class="octicon octicon-link"></span></a>A    B    C    D    E class.error</h2>
+
+<h2>
+<a name="a-4459----3----1----0----1----0001120" class="anchor" href="#a-4459----3----1----0----1----0001120"><span class="octicon octicon-link"></span></a>A 4459    3    1    0    1    0.001120</h2>
+
+<h2>
+<a name="b---19-3010----8----0----0----0008890" class="anchor" href="#b---19-3010----8----0----0----0008890"><span class="octicon octicon-link"></span></a>B   19 3010    8    0    0    0.008890</h2>
+
+<h2>
+<a name="c----0---16-2717----4----0----0007307" class="anchor" href="#c----0---16-2717----4----0----0007307"><span class="octicon octicon-link"></span></a>C    0   16 2717    4    0    0.007307</h2>
+
+<h2>
+<a name="d----0----1---27-2541----3----0012053" class="anchor" href="#d----0----1---27-2541----3----0012053"><span class="octicon octicon-link"></span></a>D    0    1   27 2541    3    0.012053</h2>
+
+<h2>
+<a name="e----0----1----3----7-2874----0003813" class="anchor" href="#e----0----1----3----7-2874----0003813"><span class="octicon octicon-link"></span></a>E    0    1    3    7 2874    0.003813</h2>
+
+<p>Predicting values for pml-testing</p>
+
+<p>Make prediction</p>
+
+<p>pred &lt;- predict(modFitrf_train, pmltesting)
+Submitting function ( 20/20 correct).</p>
+
+<p>pml_write_files = function(x){
+  n = length(x)
+  for(i in 1:n){
+    filename = paste0("problem_id_",i,".txt")
+    write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+  }
+}
+pml_write_files(pred)</p>
       </section>
     </div>
 
