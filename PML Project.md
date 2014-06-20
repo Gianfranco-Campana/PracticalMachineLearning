@@ -36,7 +36,7 @@ In order to identify the columns really needed, was used used the documentats fr
 #### All credits to: 
 #### Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013. [Document](http://groupware.les.inf.puc-rio.br/public/papers/2013.Velloso.QAR-WLE.pdf)
 
-The strategy chosen is to remove any variable not directly correlated to the capturing of movement by sensor, and so I delete the first 7 columns:
+The strategy chosen is to remove any variable which isn't a value captured  by sensors, and so the first 7 columns are deleted:
 
 1. Index 
 2. user_name	
@@ -76,6 +76,27 @@ Making classe as factor in order to use it as a outcome variable in the model:
 ```r
 pmltraining$classe <- as.factor(pmltraining$classe)
 ```
+
+####  Exploratory Data Analysis
+
+These are the final variables and the distribution of classe response for three variable explaining total data:
+
+1. total_accel_belt
+2. total_accel_arm
+3. total_accel_dumbbell
+4. total_accel_forearm
+
+```r
+par(mfrow=c(2,2))
+plot(pmltraining$classe ~ pmltraining$total_accel_forearm)
+plot(pmltraining$classe ~ pmltraining$total_accel_arm)
+plot(pmltraining$classe ~ pmltraining$total_accel_dumbbell)
+plot(pmltraining$classe ~ pmltraining$total_accel_forearm)
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
+
+
 
 ### Building training model.
 
@@ -130,7 +151,7 @@ modFitrf_train <- train(classe ~ ., data = dpdatatrain, method="rf", trControl =
 plot(modFitrf_train$finalModel)
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10.png) 
 
 
 #### Checking and validating the model using confusionMatrix and postResample method. 
