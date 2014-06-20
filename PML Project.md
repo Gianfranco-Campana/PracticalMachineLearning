@@ -96,7 +96,6 @@ plot(pmltraining$classe ~ pmltraining$total_accel_forearm)
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
 
-{ figure/unnamed-chunk-7.png }
 
 ### Building training model.
 
